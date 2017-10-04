@@ -64,5 +64,19 @@ public class Config {
     public static class Ambiente {
         @XmlAttribute(name = "nome")
         private io.echosystem.ebr.Ambiente nome;
+        
+        @XmlElement(name="servico")
+        private List<Servico> servicos;
+    }
+    
+    public static class Servico {
+        @XmlAttribute(name="nome")
+        private String nome;
+        
+        @XmlAttribute(name="versao")
+        private String versao;
+        
+        @XmlAttribute(name="url")
+        private String url;
     }
 }
