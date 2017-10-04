@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <doc nome="NF-e" descricao="Nota fiscal eletrônica">
+        <servicos versao="4.00">
+            <uf sigla="SP">
+                <ambiente nome="Produção">
+                    
+                </ambiente>
+                <ambiente nome="Homologação">
+                    
+                </ambiente>
+            </uf>
+        </servicos>
+    </doc>
+    
+    <doc nome="NFC-e" descricao="Nota fiscal de consumidor eletrônica">
+        
+    </doc>
+
+    <doc nome="CT-e" descricao="Conhecimento de transporte eletrônico">
+        
+    </doc>
+    
+    <doc nome="MDF-e" descricao="Manifesto eletrônico de documentos fiscais">
+        
+    </doc>
+</config>
