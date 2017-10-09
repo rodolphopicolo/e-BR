@@ -2,8 +2,6 @@ package io.echosystem.ebr;
 
 import io.echosystem.ebr.config.Config;
 import io.echosystem.ebr.exception.FalhaLeituraConfiguracoes;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.bind.JAXBException;
 
 /**

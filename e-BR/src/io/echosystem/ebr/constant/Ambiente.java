@@ -1,4 +1,4 @@
-package io.echosystem.ebr;
+package io.echosystem.ebr.constant;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;

@@ -3,7 +3,6 @@ package io.echosystem.ebr;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.HashMap;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -22,26 +21,26 @@ import org.xml.sax.SAXException;
  */
 public class MarshallerCache {
 
-    private static HashMap<Class, Marshaller> marshallerCache = new HashMap();
-    private static HashMap<Class, Unmarshaller> unmarshallerCache = new HashMap();
+    private static final HashMap<Class, Marshaller> MARSHALLER_CACHE = new HashMap();
+    private static final HashMap<Class, Unmarshaller> UNMARSHALLER_CACHE = new HashMap();
     
     private static Marshaller loadMarshaller(Class clazz) throws JAXBException{
-        if(marshallerCache.containsKey(clazz)){
-            return marshallerCache.get(clazz);
+        if(MARSHALLER_CACHE.containsKey(clazz)){
+            return MARSHALLER_CACHE.get(clazz);
         }
         JAXBContext jaxbContext = JAXBContext.newInstance(clazz);        
         Marshaller marshaller = jaxbContext.createMarshaller();
-        marshallerCache.put(clazz, marshaller);
+        MARSHALLER_CACHE.put(clazz, marshaller);
         return marshaller;
     }
     
     private static Unmarshaller loadUnmarshaller(Class clazz) throws JAXBException{
-        if(unmarshallerCache.containsKey(clazz)){
-            return unmarshallerCache.get(clazz);
+        if(UNMARSHALLER_CACHE.containsKey(clazz)){
+            return UNMARSHALLER_CACHE.get(clazz);
         }
         JAXBContext context = JAXBContext.newInstance(clazz);
         Unmarshaller unmarshaller = context.createUnmarshaller();
-        unmarshallerCache.put(clazz, unmarshaller);
+        UNMARSHALLER_CACHE.put(clazz, unmarshaller);
         return unmarshaller;
     }
     

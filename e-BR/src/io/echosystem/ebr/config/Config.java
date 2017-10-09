@@ -54,7 +54,7 @@ public class Config {
     @XmlType(name="io.echosystem.ebr.Config.UF")
     public static class UF {
         @XmlAttribute(name = "sigla")
-        private io.echosystem.ebr.UF sigla;
+        private io.echosystem.ebr.constant.UF sigla;
 
         @XmlElement(name = "ambiente")
         private List<Ambiente> ambiente;
@@ -63,7 +63,7 @@ public class Config {
     @XmlType(name="io.echosystem.ebr.Config.Ambiente")
     public static class Ambiente {
         @XmlAttribute(name = "nome")
-        private io.echosystem.ebr.Ambiente nome;
+        private io.echosystem.ebr.constant.Ambiente nome;
         
         @XmlElement(name="servico")
         private List<Servico> servicos;
