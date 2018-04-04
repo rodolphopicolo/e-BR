@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,17 +25,52 @@ import java.util.logging.Logger;
 public class ChaveAcesso {
     
     public static void main(String[] args) throws ArgumentoNaoInformado{
-        if(args.length == 0){
-            throw new ArgumentoNaoInformado("Nenhum argumento informado");
-        }
-        if(args[0].equalsIgnoreCase("VALIDAR")){
-            for(int i = 1; i < args.length; i++){
-                String numeroChaveAcesso = args[i];
-                try {
-                    ChaveAcesso chaveAcesso = ChaveAcesso.decompor(numeroChaveAcesso);
-                } catch (ChaveAcessoInvalida ex) {
-                    System.out.println("Chave de acesso inválida " + numeroChaveAcesso + " - " + ex.getMessage());
+        Scanner scanner = new Scanner(System.in);
+        char operacao = ' ';
+        while(true){
+            if(operacao == ' '){
+                System.out.println("[d] - Para gerar um digito verificador dos 43 primeiros dígitos de uma chave de acesso;\n[v] - Para validar uma chave de acesso com 44 dígitos;\n[ENTER] - Para encerrrar;");
+                String line = scanner.nextLine();
+                if(line.equalsIgnoreCase("d")){
+                    operacao = 'd';
+                } else if(line.equalsIgnoreCase("v")){
+                    operacao = 'v';
+                } else if(line.isEmpty() == false){
+                    System.out.println("Operação inválida");
+                } else {
+                    System.exit(0);
                 }
+            } else {
+                if(operacao == 'd'){
+                    System.out.println("Digite os primeiros 43 dígitos da chave de acesso:");
+                    String chaveAcesso43Digitos = scanner.nextLine();
+                    if(chaveAcesso43Digitos.isEmpty()){
+                        System.exit(0);
+                    }
+                    try {
+                        int digitoVerificador = calcularDigitoVerificador(chaveAcesso43Digitos);
+                        System.out.println("Dígito verificador [" + digitoVerificador + "]. Chave de acesso completa: " + chaveAcesso43Digitos + digitoVerificador);
+                    } catch (ChaveAcessoInvalida ex) {
+                        System.out.println("Chave de acesso inválida: " + ex.getMessage());
+                    }
+                    
+                } else if(operacao == 'v') {
+                    System.out.println("Digite a chave de acesso com 44 dígitos:");
+                    String chaveAcessoCompleta = scanner.nextLine();
+                    if(chaveAcessoCompleta.isEmpty()){
+                        System.exit(0);
+                    }
+                    try {
+                        ChaveAcesso.decompor(chaveAcessoCompleta);
+                        System.out.println("Chave de acesso válida");
+                    } catch (ChaveAcessoInvalida ex) {
+                        System.out.println("Chave de acesso inválida: " + ex.getMessage());
+                    }
+                } else {
+                    throw new UnsupportedOperationException("Operação inválida");
+                }
+                System.out.println("\n");
+                operacao = ' ';
             }
         }
     }
