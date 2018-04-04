@@ -52,7 +52,7 @@ public enum UF {
         return nome;
     }
     
-    public static UF fromCodigo(int codigo){
+    public static UF identificarCodigo(int codigo){
         for(UF uf: UF.values()){
             if(uf.codigo == codigo){
                 return uf;
